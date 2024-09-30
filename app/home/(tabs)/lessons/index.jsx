@@ -216,7 +216,6 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    fontFamily: "Inter",
     fontSize: 16,
   },
   scrollview: {
@@ -224,7 +223,6 @@ const styles = StyleSheet.create({
   },
   group: {},
   groupTitle: {
-    fontFamily: "Poppins_700Bold",
     fontSize: 18,
     paddingHorizontal: 12,
     paddingVertical: 8,
@@ -245,11 +243,9 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 18,
-    fontFamily: "Inter",
   },
   itemDescription: {
     fontSize: 16,
-    fontFamily: "Inter",
   },
 });
 

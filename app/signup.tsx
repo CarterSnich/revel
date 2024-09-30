@@ -88,7 +88,7 @@ const SignUp = () => {
       </View>
 
       <View style={styles.form}>
-        <Text style={styles.formText}>Please, enter your email</Text>
+        <Text style={styles.formText}>Sign up for account</Text>
         <TextField
           placeholder="Email"
           onChangeText={setEmail}

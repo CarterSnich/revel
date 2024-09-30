@@ -5,17 +5,18 @@ import { Text } from "~/components/text";
 import { actionCodeSettings, auth } from "~/firebaseConfig";
 
 const Onboarding = () => {
+  const user = auth.currentUser
   return (
     <View>
-      <Text>Email: {auth.currentUser.email}</Text>
-      <Text>Verified: {auth.currentUser.emailVerified ? "true" : "false"}</Text>
-      <Text>Name: {auth.currentUser.displayName}</Text>
+      <Text>Email: {user.email}</Text>
+      <Text>Verified: {user.emailVerified ? "true" : "false"}</Text>
+      <Text>Name: {user.displayName}</Text>
 
-      {!auth.currentUser.emailVerified && (
+      {!user.emailVerified && (
         <Button
           text="Send verification"
           onPress={() => {
-            sendEmailVerification(auth.currentUser, actionCodeSettings).then(
+            sendEmailVerification(user, actionCodeSettings).then(
               () => {
                 Alert.alert("", "Sent", [{ text: "Ok" }]);
               }

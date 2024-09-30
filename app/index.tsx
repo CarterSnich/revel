@@ -11,7 +11,6 @@ import { PasswordField, TextField } from "~/components/text-field";
 import { actionCodeSettings, auth } from "../firebaseConfig";
 
 const Index = () => {
-  const [rememberMe, setRememberMe] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,15 +18,22 @@ const Index = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        if (!user.emailVerified) {
-          sendEmailVerification(user, actionCodeSettings).then(() => {
-            Alert.alert(
-              "Log in",
-"We've sent a verification link to your email. Please check your inbox and spam folder.",              [{ text: "Ok" }]
-            );
-          });
+        if (user.emailVerified) {
+          router.replace("./home");
+        } else {
+          sendEmailVerification(user, actionCodeSettings)
+            .then(() => {
+              setPassword("");
+              Alert.alert(
+                "Log in",
+                "We've sent a verification link to your email. Please check your inbox and spam folder.",
+                [{ text: "Okay" }]
+              );
+            })
+            .catch((error) => {
+              console.error(RangeError);
+            });
         }
-        router.replace("./onboarding");
       })
       .catch((error) => {
         Alert.alert("Login", `${error.code}: ${error.message}`, [
@@ -42,50 +48,40 @@ const Index = () => {
   return (
     <View style={styles.container}>
       <View style={styles.hero}>
-        <Image source={require("./../assets/logo.png")} style={styles.logo} />
+        <Image source={require("~/assets/logo.png")} style={styles.logo} />
         <Text style={styles.title}>Revolutionizing E-Learning:</Text>
         <Text style={styles.title}>Sign Language</Text>
         <Text>Sign. Connect. Thrive.</Text>
         <Text>Welcome to our Sign Language App</Text>
       </View>
-
       <View style={styles.form}>
-        <Text
-          style={{
-            margin: 8,
-            textAlign: "center",
-            fontSize: 16,
-            fontWeight: "bold",
-          }}
-        >
-          Log In Account
-        </Text>
-
-        <View style={styles.inputGroup}>
-          <TextField
-            placeholder="Emails"
-            icon="email"
-            textContentType="emailAddress"
-            onChangeText={setEmail}
-          />
-          <PasswordField
-            placeholder="Password"
-            icon="password"
-            onChangeText={setPassword}
-          />
-          <Button text="Log in" onPress={logIn} />
-        </View>
-
-        <View style={{ margin: 8 }}>
-          <Link
-            replace
-            href="/signup"
-            style={{ textAlign: "center", fontFamily: "Inter_400Regular" }}
-          >
-            Don't have an account? Sign up here.
-          </Link>
-        </View>
+        <Text style={styles.formText}>Log in</Text>
+        <TextField
+          placeholder="Email"
+          icon="email"
+          textContentType="emailAddress"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <PasswordField
+          placeholder="Password"
+          icon="password"
+          onChangeText={setPassword}
+          value={password}
+        />
+        <Button text="Log in" onPress={logIn} />
       </View>
+      <Link
+        replace
+        href="/signup"
+        style={{
+          textAlign: "center",
+          fontFamily: "Inter_400Regular",
+          marginTop: 16,
+        }}
+      >
+        Don't have an account? Sign up here.
+      </Link>
     </View>
   );
 };
@@ -98,7 +94,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     alignItems: "center",
     justifyContent: "center",
-    gap: 48,
   },
   logo: {
     width: "40%",
@@ -107,12 +102,18 @@ const styles = StyleSheet.create({
   },
   hero: {
     alignItems: "center",
+    marginBottom: 48,
   },
   title: {
     fontSize: 28,
   },
   form: {
+    gap: 16,
     width: "100%",
+  },
+  formText: {
+    textAlign: "center",
+    fontSize: 24,
   },
   inputGroup: {
     gap: 16,

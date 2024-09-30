@@ -87,7 +87,10 @@ const Account = () => {
                 <Text style={styles.infoText}>09123456789</Text>
               )}
             </View>
-            <Pressable style={styles.editProfileButton}>
+            <Pressable
+              style={styles.editProfileButton}
+              onPress={() => setIsForm(!isForm)}
+            >
               <Text style={styles.editProfileText}>Edit profile</Text>
             </Pressable>
           </View>
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   fullname: {
-    fontFamily: "Inter",
+    fontFamily: "Inter_400Regular",
     fontSize: 18,
     flex: 1,
   },
@@ -127,10 +130,10 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 8,
     gap: 8,
-    fontFamily: "Inter",
+    fontFamily: "Inter_400Regular",
   },
   progressLinkText: {
-    fontFamily: "Inter",
+    fontFamily: "Inter_400Regular",
     fontSize: 12,
   },
   profilePictureWrapper: {
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   headerText: {
-    fontFamily: "Poppins_700Bold",
+    fontFamily: "Inter_700Bold",
     fontSize: 18,
   },
   infoViews: {
@@ -173,7 +176,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   infoLabel: {
-    fontFamily: "Inter",
+    fontFamily: "Inter_400Regular",
     flex: 1,
     fontSize: 16,
   },
@@ -193,7 +196,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   editProfileText: {
-    fontFamily: "Poppins_500Medium",
+    fontFamily: "Inter_400Regular",
     color: "white",
     fontSize: 16,
   },

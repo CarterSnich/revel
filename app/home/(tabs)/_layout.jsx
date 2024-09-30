@@ -104,15 +104,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    fontFamily: "Inter",
+    fontFamily: "Inter_400Regular",
     backgroundColor: "white",
   },
   tabText: {
-    fontFamily: "Inter",
+    fontFamily: "Inter_400Regular",
   },
   tabTextFocus: {
     color: "#FC15A5",
-    fontFamily: "Inter",
+    fontFamily: "Inter_400Regular",
   },
 });
 

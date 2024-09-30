@@ -6,10 +6,10 @@ import {
   Image,
   Pressable,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { Text } from "~/components/text";
 
 const Translate = () => {
   const [cameraState, setCameraState] = useState(true);
@@ -38,11 +38,11 @@ const Translate = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require("./../../../assets/icon.png")}
+          source={require("~/assets/icon.png")}
           style={styles.logo}
         />
         <TouchableOpacity style={styles.headerButton}>
-          <FontAwesome5 name="bell" size={24} color="white" />
+          <FontAwesome5 name="bell" size={24} color="black" />
         </TouchableOpacity>
       </View>
 
@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
   },
   translations: {
     padding: 16,
-    fontFamily: "Inter",
     fontSize: 24,
     textAlign: "center",
     textAlignVertical: "center",
