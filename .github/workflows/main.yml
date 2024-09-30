@@ -20,7 +20,7 @@ jobs:
       run: npm install -g eas-cli
 
     - name: Install dependencies
-      run: npx expo install
+      run: npm install
 
     - name: Build
       run: eas build -p android --profile preview
